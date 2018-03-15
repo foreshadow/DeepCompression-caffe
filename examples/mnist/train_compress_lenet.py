@@ -5,7 +5,7 @@ import os
 """
 This is a script to automatically compressing a pretrained mnist lenet caffemodel, including weight prunnng and weight quantization.
 In practice, the layers are much more sensitive to weight prunning than weight quantization. So we suggest to do weight prunning layer-wisely 
-and do weight quantization finally since it almost does no harm to accuary.
+and do weight quantization finally since it almost does no harm to accuracy.
 In this script, we set the sparse ratio (the ratio of pruned weights) layer-wisely and do each finetuning iteration.
 After all layers are properly pruned, weight quantization are done on all layers simultaneously.
 The final accuracy of finetuned model is about 99.06%, you can check if the weights are most pruned and weight-shared for sure.
@@ -259,8 +259,7 @@ if __name__ == '__main__':
         modelfile = "lenet_iter_10000.caffemodel" #initial model
       else:
         modelfile = "lenet_finetune_stage%d_iter_%d.caffemodel" %(s, iters[s-1]) #model of last stage
-      cmd = "./build/tools/caffe train --solver=examples/mnist/lenet_solver_stage%d.prototxt --weights=examples/mnist/models/%s " %(s+1, modelfile)
+      cmd = "./build/tools/caffe train --solver=examples/mnist/lenet_solver_stage%d.prototxt --weights=examples/mnist/models/%s --gpu 4,5,6,7" %(s+1, modelfile)
       #print cmd
       os.system(cmd)      
-
 
