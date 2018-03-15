@@ -16,7 +16,7 @@ Please refer to http://blog.csdn.net/may0324/article/details/52935869 for more.
 
 
 
-sparse_ratio_vec = [0.33, 0.8, 0.9, 0.8] #sparse ratio of each layer
+sparse_ratio_vec = [0.37, 0.88, 0.92, 0.81] #sparse ratio of each layer
 iters = [500, 1000, 10500, 11000, 500] #max iteration of each stage
 
 def generate_data_layer():
