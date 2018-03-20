@@ -1,3 +1,5 @@
-*
-!.gitignore
-!examples/mnist/
+.idea
+.build_release
+build
+cmake-build-*
+Makefile.config

@@ -8,17 +8,25 @@ message BlobShape {
 }
 
 message BlobProto {
-  optional BlobShape shape = 7;
-  repeated float data = 5 [packed = true];
-  repeated float diff = 6 [packed = true];
-  repeated double double_data = 8 [packed = true];
-  repeated double double_diff = 9 [packed = true];
-
   // 4D dimensions -- deprecated.  Use "shape" instead.
   optional int32 num = 1 [default = 0];
   optional int32 channels = 2 [default = 0];
   optional int32 height = 3 [default = 0];
   optional int32 width = 4 [default = 0];
+
+  repeated float data = 5 [packed = true];
+  repeated float diff = 6 [packed = true];
+  optional BlobShape shape = 7;
+  repeated double double_data = 8 [packed = true];
+  repeated double double_diff = 9 [packed = true];
+
+  // Deep Compression parameters
+  repeated float center = 10;
+  optional uint32 pruned_size = 11;
+  optional uint32 label_bit = 12;
+  optional bytes label = 13;
+  optional uint32 offset_bit = 14;
+  optional bytes offset = 15;
 }
 
 // The BlobProtoVector is simply a way to pass multiple blobproto instances
@@ -605,7 +613,7 @@ message ConvolutionParameter {
   // ignored and the ND implementation will be used.)
   optional bool force_nd_im2col = 17 [default = false];
 
-   //the sparse parameters 
+   //the sparse parameters
   optional float sparse_ratio = 19 [default = 0]; //the sparsity of weights prunning
   optional int32 class_num = 20 [default = 256]; //the cluster numbers of k-means
   optional bool quantize_term = 21 [default = false]; //whether to quantize weights
@@ -825,10 +833,9 @@ message InnerProductParameter {
   optional bool transpose = 6 [default = false];
 
   //the sparse parameters
-  optional float sparse_ratio = 7 [default = 0]; //the sparsity of weights prunning 
-  optional int32 class_num = 8 [default = 32]; //the cluster numbers of k-means 
+  optional float sparse_ratio = 7 [default = 0]; //the sparsity of weights prunning
+  optional int32 class_num = 8 [default = 32]; //the cluster numbers of k-means
   optional bool quantize_term = 9 [default = false]; //whether to quantize weights
-
 }
 
 message InputParameter {
