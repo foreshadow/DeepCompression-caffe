@@ -1,0 +1,5 @@
+*
+!.gitignore
+!lenet_finetune_stage5_iter_500.caffemodel
+!lenet.recovered.caffemodel
+

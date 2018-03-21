@@ -2,4 +2,5 @@
 .build_release
 build
 cmake-build-*
+log
 Makefile.config
