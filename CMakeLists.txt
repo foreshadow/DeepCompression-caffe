@@ -80,10 +80,10 @@ add_subdirectory(docs)
 add_custom_target(lint COMMAND ${CMAKE_COMMAND} -P ${PROJECT_SOURCE_DIR}/cmake/lint.cmake)
 
 # ---[ pytest target
-#if(BUILD_python)
-#  add_custom_target(pytest COMMAND python${python_version} -m unittest discover -s caffe/test WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/python )
-#  add_dependencies(pytest pycaffe)
-#endif()
+if(BUILD_python)
+  add_custom_target(pytest COMMAND python${python_version} -m unittest discover -s caffe/test WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/python )
+  add_dependencies(pytest pycaffe)
+endif()
 
 # ---[ Configuration summary
 caffe_print_configuration_summary()

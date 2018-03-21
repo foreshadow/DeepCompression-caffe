@@ -497,6 +497,7 @@ void Blob<Dtype>::FromProto(const BlobProto& proto, bool reshape) {
 
 template <>
 void Blob<double>::ToProto(BlobProto* proto, bool write_diff) const {
+  // current version of Deep Compression does not handle double data, see float version below.
   proto->clear_shape();
   for (int i = 0; i < shape_.size(); ++i) {
     proto->mutable_shape()->add_dim(shape_[i]);
