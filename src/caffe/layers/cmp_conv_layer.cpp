@@ -41,8 +41,7 @@ void CmpConvolutionLayer<Dtype>::ComputeBlobMask() {
 
   if (index > 0) {
     Dtype threshold = sort_weight[index - 1];
-    LOG(INFO) << "convolution threshold and ratio: " << threshold << " " << ratio << endl;
-
+    LOG(INFO) << layer_param().name() << " threshold and ratio: " << threshold << " " << ratio << endl;
     for (int i = 0; i < count; ++i) {
       mask_data[i] = ((weight[i] > threshold || weight[i] < -threshold) ? 1 : 0);
       muweight[i] *= mask_data[i];
