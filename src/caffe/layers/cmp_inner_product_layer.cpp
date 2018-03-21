@@ -40,7 +40,7 @@ void CmpInnerProductLayer<Dtype>::ComputeBlobMask() {
   float rat = 0;
   if (index > 0) {
     Dtype thr = sort_weight[index - 1];
-    LOG(INFO) << layer_param().name() << " threshold: " << thr << endl;
+    LOG(INFO) << this->layer_param_.name() << " threshold: " << thr << endl;
     for (int i = 0; i < count; ++i) {
       mask_data[i] = ((weight[i] > thr || weight[i] < -thr) ? 1 : 0);
       muweight[i] *= mask_data[i];
